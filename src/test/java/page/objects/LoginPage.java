@@ -27,7 +27,10 @@ public class LoginPage extends TestBase {
     private WebElement loginButton;
 
     @FindBy(xpath = "//div[contains(@id,'error') and contains(@class,'quick-switch')]/p")
-    private WebElement wrongPasswordMessage;
+    private WebElement wrongCredentialsMessange;
+
+    @FindBy(xpath = "//a[@href = '/forgot']")
+    private WebElement forgotPasswordMessage;
 
     public LoginPage(){
         PageFactory.initElements(DriverManager.getWebDriver(),this);
@@ -38,6 +41,13 @@ public class LoginPage extends TestBase {
         usernameField.clear();
         usernameField.sendKeys(username);
         logger.info("Send username" + username);
+        WaitForElement.waitUntilElementIsVisible(forgotPasswordMessage);
+        return this;
+    }
+
+    public LoginPage clearUserNameField(){
+        WaitForElement.waitUntilElementIsVisible(usernameField);
+        usernameField.clear();
         return this;
     }
 
@@ -45,6 +55,11 @@ public class LoginPage extends TestBase {
         passwordField.clear();
         passwordField.sendKeys(password);
         logger.info("Send password" + password);
+        return this;
+    }
+
+    public LoginPage clearPasswordField(){
+        passwordField.clear();
         return this;
     }
 
@@ -57,10 +72,10 @@ public class LoginPage extends TestBase {
     }
 
     public String getWarningMessage(){
-        logger.info("Wait for Element" + wrongPasswordMessage);
-        WaitForElement.waitUntilElementIsVisible(wrongPasswordMessage);
-        logger.info("Element" + wrongPasswordMessage +" is visible");
-        String warningText = wrongPasswordMessage.getText();
+        logger.info("Wait for Element" + wrongCredentialsMessange);
+        WaitForElement.waitUntilElementIsVisible(wrongCredentialsMessange);
+        logger.info("Element" + wrongCredentialsMessange +" is visible");
+        String warningText = wrongCredentialsMessange.getText();
         return warningText;
     }
 

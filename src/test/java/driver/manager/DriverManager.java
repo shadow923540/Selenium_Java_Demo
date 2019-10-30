@@ -12,14 +12,15 @@ public class DriverManager {
 
     public static WebDriver  getWebDriver(){
         if (driver == null){
-            System.setProperty("webdriver.gecko.driver", "C:/DRIVERS/geckodriver.exe");
-            driver = new FirefoxDriver();
+            System.setProperty("webdriver.chrome.driver", "/home/pawel/Drivers/chromedriver");
+            driver = new ChromeDriver();
         }
         return driver;
     }
 
     public static void disposeDriver(){
         driver.close();
+        driver.quit();
         driver = null;
     }
 }
