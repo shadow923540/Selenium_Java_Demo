@@ -13,12 +13,23 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
                 .clickOnLoginButton()
                 .typeIntoUserNameField("pz921@wp.pl")
                 .typeIntoPasswordField("wrongpassword")
-                .clickOnLoginButton()
+                .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
 
-        assertEquals(WrongPasswordMessage,"Invalid password" );
+        assertEquals("Invalid password", WrongPasswordMessage );
     }
 
+    @Test
+    public void LoginWithWrongEmail(){
+        LandingPage landingPage = new LandingPage();
+        String WrongPasswordMessage = landingPage
+                .clickOnLoginButton()
+                .typeIntoUserNameField("pz926456456451@wp.pl")
+                .typeIntoPasswordField("wrongpassword")
+                .clickOnLoginButtonWithWrongCredentials()
+                .getWarningMessage();
 
+        assertEquals("There isn't an account for this email" , WrongPasswordMessage);
+    }
 
 }

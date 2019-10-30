@@ -7,7 +7,12 @@ import org.openqa.selenium.support.PageFactory;
 import tests.TestBase;
 import waits.WaitForElement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class LoginPage extends TestBase {
+
+    private Logger logger = LogManager.getRootLogger();
 
     @FindBy(css = ".layout-twothirds-center h1")
     private WebElement loginPageMessage;
@@ -21,7 +26,7 @@ public class LoginPage extends TestBase {
     @FindBy(id= "login")
     private WebElement loginButton;
 
-    @FindBy(css = "#error p")
+    @FindBy(xpath = "//div[@id='error']/p")
     private WebElement wrongPasswordMessage;
 
     public LoginPage(){
@@ -32,24 +37,31 @@ public class LoginPage extends TestBase {
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
         usernameField.sendKeys(username);
+        logger.info("Send username" + username);
         return this;
     }
 
     public LoginPage typeIntoPasswordField(String password){
         passwordField.clear();
         passwordField.sendKeys(password);
+        logger.info("Send password" + password);
         return this;
     }
 
-    public LoginPage clickOnLoginButton(){
+    public LoginPage clickOnLoginButtonWithWrongCredentials(){
+        WaitForElement.waitUntilElementIsClickable(loginButton);
         loginButton.click();
+        logger.info("Clicked on login button" + loginButton);
         return this;
     }
 
     public String getWarningMessage(){
+        logger.info("Wait for Element" + wrongPasswordMessage);
         WaitForElement.waitUntilElementIsVisible(wrongPasswordMessage);
+        logger.info("Element" + wrongPasswordMessage +" is visible");
         String warningText = wrongPasswordMessage.getText();
         return warningText;
     }
+
 
 }
