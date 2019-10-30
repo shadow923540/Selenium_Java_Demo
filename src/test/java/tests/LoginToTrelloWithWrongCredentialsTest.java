@@ -1,16 +1,19 @@
 package tests;
 
+import driver.manager.DriverUtils;
 import org.testng.annotations.Test;
-import page.objects.LandingPage;
+import page.objects.LoginPage;
+
+import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
 
     @Test
     public void LoginWithWrongPassword(){
-        LandingPage landingPage = new LandingPage();
-        String WrongPasswordMessage = landingPage
-                .clickOnLoginButton()
+        DriverUtils.navigateToPage(LOGIN_URL);
+        LoginPage loginPage = new LoginPage();
+        String WrongPasswordMessage = loginPage
                 .typeIntoUserNameField("pz921@wp.pl")
                 .typeIntoPasswordField("wrongpassword")
                 .clickOnLoginButtonWithWrongCredentials()
@@ -21,9 +24,9 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
 
     @Test
     public void LoginWithWrongEmail(){
-        LandingPage landingPage = new LandingPage();
-        String WrongPasswordMessage = landingPage
-                .clickOnLoginButton()
+        DriverUtils.navigateToPage(LOGIN_URL);
+        LoginPage loginPage = new LoginPage();
+        String WrongPasswordMessage = loginPage
                 .typeIntoUserNameField("pz926456456451@wp.pl")
                 .typeIntoPasswordField("wrongpassword")
                 .clickOnLoginButtonWithWrongCredentials()

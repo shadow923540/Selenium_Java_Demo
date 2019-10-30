@@ -23,10 +23,10 @@ public class LoginPage extends TestBase {
     @FindBy(id = "password")
     private WebElement passwordField;
 
-    @FindBy(id= "login")
+    @FindBy(xpath = "//input[@id='login']")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//div[@id='error']/p")
+    @FindBy(xpath = "//div[contains(@id,'error') and contains(@class,'quick-switch')]/p")
     private WebElement wrongPasswordMessage;
 
     public LoginPage(){
@@ -49,6 +49,7 @@ public class LoginPage extends TestBase {
     }
 
     public LoginPage clickOnLoginButtonWithWrongCredentials(){
+        logger.info("Wait for " + loginButton);
         WaitForElement.waitUntilElementIsClickable(loginButton);
         loginButton.click();
         logger.info("Clicked on login button" + loginButton);
