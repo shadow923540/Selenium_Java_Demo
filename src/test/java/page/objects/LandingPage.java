@@ -14,8 +14,9 @@ public class LandingPage {
         PageFactory.initElements(DriverManager.getWebDriver(),this);
     }
 
-    public void clickOnLoginButton(){
+    public LoginPage clickOnLoginButton(){
         WaitForElement.waitUntilElementIsClickable(loginButton);
         loginButton.click();
+        return new LoginPage();
     }
 }
