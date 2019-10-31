@@ -18,7 +18,7 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
         DriverUtils.navigateToPage(LOGIN_URL);
     }
 
-    @Test
+/*    @Test
     public void LoginWithCorrectLoginAndPassword(){
         LoginPage loginPage = new LoginPage();
         String WrongCredentialsMessage= loginPage
@@ -27,41 +27,41 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
                 .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
         assertEquals("To nie jest konto dla tego e-maila" , WrongCredentialsMessage);
+    }*/
+
+    @Test
+    public void LoginWithWrongPassword(){
+        DriverUtils.navigateToPage(APPLICATION_URL);
+        LandingPage landingPage = new LandingPage();
+        String WrongPasswordMessage = landingPage
+                .clickOnLoginButton()
+                .typeIntoUserNameField("pz921@wp.pl")
+                .typeIntoPasswordField("wrongpassword")
+                .clickOnLoginButtonWithWrongCredentials()
+                .getWarningMessage();
+        assertEquals("This account doesn't have a password set - perhaps you normally log in with Google or SSO? If you're stuck, choose 'Forgot your password?'", WrongPasswordMessage );
     }
 
-//    @Test
-//    public void LoginWithWrongPassword(){
-//        DriverUtils.navigateToPage(APPLICATION_URL);
-//        LandingPage landingPage = new LandingPage();
-//        String WrongPasswordMessage = landingPage
-//                .clickOnLoginButton()
-//                .typeIntoUserNameField("pz921@wp.pl")
-//                .typeIntoPasswordField("wrongpassword")
-//                .clickOnLoginButtonWithWrongCredentials()
-//                .getWarningMessage();
-//        assertEquals("Nieprawidłowe hasło", WrongPasswordMessage );
-//    }
-//
-//    @Test
-//    public void LoginWithWrongEmail(){
-//        LoginPage loginPage = new LoginPage();
-//        String WrongCredentialsMessage= loginPage
-//                .typeIntoUserNameField("pz926456456451@wp.pl")
-//                .typeIntoPasswordField("wrong")
-//                .clickOnLoginButtonWithWrongCredentials()
-//                .getWarningMessage();
+    @Test
+    public void LoginWithWrongEmail(){
+        LoginPage loginPage = new LoginPage();
+        String WrongCredentialsMessage= loginPage
+                .typeIntoUserNameField("pz926456456451@wp.pl")
+                .typeIntoPasswordField("wrong")
+                .clickOnLoginButtonWithWrongCredentials()
+                .getWarningMessage();
 //        assertEquals("To nie jest konto dla tego e-maila" , WrongCredentialsMessage);
-//    }
-//
-//    @Test
-//    public void LoginWithBlankEmailAndPassword(){
-//        LoginPage loginPage = new LoginPage();
-//        String WrongCredentialsMessage= loginPage
-//                .clearUserNameField()
-//                .clearPasswordField()
-//                .clickOnLoginButtonWithWrongCredentials()
-//                .getWarningMessage();
+    }
+
+    @Test
+    public void LoginWithBlankEmailAndPassword(){
+        LoginPage loginPage = new LoginPage();
+        String WrongCredentialsMessage= loginPage
+                .clearUserNameField()
+                .clearPasswordField()
+                .clickOnLoginButtonWithWrongCredentials()
+                .getWarningMessage();
 //        assertEquals("Brakujący e-mail" , WrongCredentialsMessage);
-//    }
+    }
 
 }

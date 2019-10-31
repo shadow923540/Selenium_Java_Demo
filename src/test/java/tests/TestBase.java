@@ -24,8 +24,8 @@ public class TestBase {
         logger.info("Navigate To Page: " + APPLICATION_URL);
     }
 
-//    @AfterMethod
-//    public void afterTest(){
-//        DriverManager.disposeDriver();
-//    }
+    @AfterMethod
+    public void afterTest(){
+        DriverManager.disposeDriver();
+    }
 }
