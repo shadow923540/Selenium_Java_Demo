@@ -18,50 +18,98 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
         DriverUtils.navigateToPage(LOGIN_URL);
     }
 
-/*    @Test
-    public void LoginWithCorrectLoginAndPassword(){
-        LoginPage loginPage = new LoginPage();
-        String WrongCredentialsMessage= loginPage
-                .typeIntoUserNameField("pz65@o2.pl")
-                .typeIntoPasswordField("netguru123")
-                .clickOnLoginButtonWithWrongCredentials()
-                .getWarningMessage();
-        assertEquals("To nie jest konto dla tego e-maila" , WrongCredentialsMessage);
-    }*/
-
     @Test
-    public void LoginWithWrongPassword(){
-        DriverUtils.navigateToPage(APPLICATION_URL);
-        LandingPage landingPage = new LandingPage();
-        String WrongPasswordMessage = landingPage
-                .clickOnLoginButton()
-                .typeIntoUserNameField("pz921@wp.pl")
-                .typeIntoPasswordField("wrongpassword")
-                .clickOnLoginButtonWithWrongCredentials()
-                .getWarningMessage();
-        assertEquals("This account doesn't have a password set - perhaps you normally log in with Google or SSO? If you're stuck, choose 'Forgot your password?'", WrongPasswordMessage );
-    }
-
-    @Test
-    public void LoginWithWrongEmail(){
-        LoginPage loginPage = new LoginPage();
-        String WrongCredentialsMessage= loginPage
-                .typeIntoUserNameField("pz926456456451@wp.pl")
-                .typeIntoPasswordField("wrong")
-                .clickOnLoginButtonWithWrongCredentials()
-                .getWarningMessage();
-//        assertEquals("To nie jest konto dla tego e-maila" , WrongCredentialsMessage);
-    }
-
-    @Test
-    public void LoginWithBlankEmailAndPassword(){
+    public void loginWithBlankEmailAndPassword(){
         LoginPage loginPage = new LoginPage();
         String WrongCredentialsMessage= loginPage
                 .clearUserNameField()
                 .clearPasswordField()
                 .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
-//        assertEquals("Brakujący e-mail" , WrongCredentialsMessage);
+        assertEquals("Missing email" , WrongCredentialsMessage);
     }
+
+    @Test
+    public void loginWithCorrectEmailAndPassword(){
+        DriverUtils.navigateToPage(APPLICATION_URL);
+        LandingPage landingPage = new LandingPage();
+        landingPage
+                .clickOnLoginButton()
+                .typeIntoValidUserNameField("pz65@o2.pl")
+                .clickOnLoginButtonWithValidCredentials()
+                .clickLoginSubmit()
+                .typePassword("netguru123")
+                .clickFinalLoginSubmit()
+                .checkIfAddDashboardIsVisible();
+    }
+
+    @Test
+    public void loginWithInValidEmailInvalidPasswd(){
+        LoginPage loginPage = new LoginPage();
+        String WrongCredentialsMessage= loginPage
+                .typeIntoInvalidUserNameField()
+                .typeIntoPasswordField("wrong")
+                .clickOnLoginButtonWithWrongCredentials()
+                .getWarningMessage();
+        assertEquals("Invalid password" , WrongCredentialsMessage);
+    }
+
+    @Test
+    public void loginWithValidEmailAndInvalidPasswd(){
+        LoginPage loginPage = new LoginPage();
+        loginPage
+                .typeIntoValidUserNameField("pz65@o2.pl")
+                .clickOnLoginButtonWithValidCredentials()
+                .clickLoginSubmit()
+                .typePassword("wrongpassword")
+                .clickLoginSubmit()
+                .checkIfWarningMessageIsVisible();
+    }
+
+    @Test
+    public void loginWithCorrectUserNameAndPassword(){
+        LoginPage loginPage = new LoginPage();
+        loginPage
+                .typeIntoValidUserNameField("netguru65")
+                .clickOnLoginButtonWithValidCredentials()
+                .clickLoginSubmit()
+                .typePassword("netguru123")
+                .clickFinalLoginSubmit()
+                .checkIfAddDashboardIsVisible();
+    }
+
+    @Test
+    public void checkForgotYourPassword(){
+        LoginPage loginPage = new LoginPage();
+        loginPage
+                .typeIntoInvalidUserNameField()
+                .clickForgotPassword()
+                .checkVisibilityOfForgotPasswdMessage();
+
+    }
+
+
+
+
+
+
+
+
+//    @Test
+//    public void LoginWithWrongPassword(){
+//        DriverUtils.navigateToPage(APPLICATION_URL);
+//        LandingPage landingPage = new LandingPage();
+//        String WrongPasswordMessage = landingPage
+//                .clickOnLoginButton()
+//                .typeIntoUserNameField("pz921@wp.pl")
+//                .typeIntoPasswordField("wrongpassword")
+//                .clickOnLoginButtonWithWrongCredentials()
+//                .getWarningMessage();
+//        assertEquals("This account doesn't have a password set - perhaps you normally log in with Google or SSO? If you're stuck, choose 'Forgot your password?'", WrongPasswordMessage );
+//    }
+//
+
+
+
 
 }

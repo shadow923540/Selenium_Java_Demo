@@ -92,5 +92,10 @@ public class LoginPage extends TestBase {
         return warningText;
     }
 
+    public ForgotPassword clickForgotPassword(){
+        WaitForElement.waitUntilElementIsVisible(forgotPasswordMessage);
+        forgotPasswordMessage.click();
+        return new ForgotPassword();
+    }
 
 }

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import tests.TestBase;
 import waits.WaitForElement;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class AtlassianPage extends TestBase {
     private Logger logger = LogManager.getRootLogger();
 
@@ -17,6 +19,10 @@ public class AtlassianPage extends TestBase {
 
     @FindBy(id="password")
     private WebElement  passwordField;
+
+    @FindBy(xpath = "//div[@id='login-error']/span")
+    private WebElement warningMessage;
+
 
     public AtlassianPage(){
         PageFactory.initElements(DriverManager.getWebDriver(), this);
@@ -36,12 +42,19 @@ public class AtlassianPage extends TestBase {
         return new TrelloDashBoard();
     }
 
-    public AtlassianPage typeValidPassword(){
+    public AtlassianPage typePassword(String passwd){
         WaitForElement.waitUntilElementIsVisible(passwordField);
-        passwordField.sendKeys("netguru123");
-        logger.info("Type valid password");
+        passwordField.sendKeys(passwd);
+        logger.info("Typed password : "+ passwd);
         return this;
     }
 
+    public AtlassianPage checkIfWarningMessageIsVisible(){
+        logger.info("Wait for warning message");
+        WaitForElement.waitUntilElementIsVisible(warningMessage);
+        assertTrue(warningMessage.isDisplayed());
+        logger.info("Warning message is Displayed " + warningMessage);
+        return this;
+    }
 
 }
