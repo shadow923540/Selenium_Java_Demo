@@ -32,6 +32,9 @@ public class LoginPage extends TestBase {
     @FindBy(xpath = "//a[@href = '/forgot']")
     private WebElement forgotPasswordMessage;
 
+    @FindBy(css=".google-button")
+    private WebElement signInWithGoogle;
+
     public LoginPage(){
         PageFactory.initElements(DriverManager.getWebDriver(),this);
     }
@@ -98,4 +101,8 @@ public class LoginPage extends TestBase {
         return new ForgotPassword();
     }
 
+    public GooglePage clickSignUpWithGoogle(){
+        signInWithGoogle.click();
+        return new GooglePage();
+    }
 }
