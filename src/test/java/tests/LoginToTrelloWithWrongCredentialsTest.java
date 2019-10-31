@@ -85,31 +85,13 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
                 .typeIntoInvalidUserNameField()
                 .clickForgotPassword()
                 .checkVisibilityOfForgotPasswdMessage();
-
     }
 
-
-
-
-
-
-
-
-//    @Test
-//    public void LoginWithWrongPassword(){
-//        DriverUtils.navigateToPage(APPLICATION_URL);
-//        LandingPage landingPage = new LandingPage();
-//        String WrongPasswordMessage = landingPage
-//                .clickOnLoginButton()
-//                .typeIntoUserNameField("pz921@wp.pl")
-//                .typeIntoPasswordField("wrongpassword")
-//                .clickOnLoginButtonWithWrongCredentials()
-//                .getWarningMessage();
-//        assertEquals("This account doesn't have a password set - perhaps you normally log in with Google or SSO? If you're stuck, choose 'Forgot your password?'", WrongPasswordMessage );
-//    }
-//
-
-
-
-
+    @Test
+    public void checkSignInWithGoogle(){
+        LoginPage loginPage = new LoginPage();
+        loginPage
+                .clickSignUpWithGoogle()
+                .checkWelcomeMessage();
+    }
 }

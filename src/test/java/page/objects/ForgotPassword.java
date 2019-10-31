@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import tests.TestBase;
 import waits.WaitForElement;
 import static org.testng.AssertJUnit.assertTrue;
+
 public class ForgotPassword extends TestBase {
     private Logger logger = LogManager.getRootLogger();
 
