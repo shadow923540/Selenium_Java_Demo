@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -14,10 +15,7 @@ public class LandingPage {
     @FindBy(xpath = "//a[@href='/login']")
     private WebElement loginButton;
 
-    public LandingPage(){
-        PageFactory.initElements(DriverManager.getWebDriver(),this);
-    }
-
+    @Step("Click Login Button on main page")
     public LoginPage clickOnLoginButton(){
         WaitForElement.waitUntilElementIsClickable(loginButton);
         loginButton.click();

@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -23,11 +24,7 @@ public class AtlassianPage extends TestBase {
     @FindBy(xpath = "//div[@id='login-error']/span")
     private WebElement warningMessage;
 
-
-    public AtlassianPage(){
-        PageFactory.initElements(DriverManager.getWebDriver(), this);
-    }
-
+    @Step("Click Submin Login on Attlasian Page  ")
     public AtlassianPage clickLoginSubmit(){
         WaitForElement.waitUntilElementIsClickable(loginSubmit);
         loginSubmit.click();
@@ -35,6 +32,7 @@ public class AtlassianPage extends TestBase {
         return this;
     }
 
+    @Step("Click Submin Login with valid email and password on Attlasian login page ")
     public TrelloDashBoard clickFinalLoginSubmit(){
         WaitForElement.waitUntilElementIsClickable(loginSubmit);
         loginSubmit.click();
@@ -42,6 +40,7 @@ public class AtlassianPage extends TestBase {
         return new TrelloDashBoard();
     }
 
+    @Step("Type into password field password : {passwd}")
     public AtlassianPage typePassword(String passwd){
         WaitForElement.waitUntilElementIsVisible(passwordField);
         passwordField.sendKeys(passwd);
@@ -49,6 +48,7 @@ public class AtlassianPage extends TestBase {
         return this;
     }
 
+    @Step("Checking if warning message is visible")
     public AtlassianPage checkIfWarningMessageIsVisible(){
         logger.info("Wait for warning message");
         WaitForElement.waitUntilElementIsVisible(warningMessage);

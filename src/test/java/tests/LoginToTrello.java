@@ -1,6 +1,9 @@
 package tests;
 
 import driver.manager.DriverUtils;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.objects.LandingPage;
@@ -10,7 +13,7 @@ import static navigation.ApplicationURLs.APPLICATION_URL;
 import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
+public class LoginToTrello extends TestBase  {
 
     @BeforeMethod
     public void beforeTest(){
@@ -19,6 +22,7 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
     }
 
     @Test
+    @Description("Test check behavior of application when user left blank fields")
     public void loginWithBlankEmailAndPassword(){
         LoginPage loginPage = new LoginPage();
         String WrongCredentialsMessage= loginPage
@@ -26,10 +30,12 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
                 .clearPasswordField()
                 .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
-        assertEquals("Missing email" , WrongCredentialsMessage);
+        assertEquals("Brakujący e-mail" , WrongCredentialsMessage);
     }
 
     @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Test check behavior of application when user type correct email and correct password")
     public void loginWithCorrectEmailAndPassword(){
         DriverUtils.navigateToPage(APPLICATION_URL);
         LandingPage landingPage = new LandingPage();
@@ -44,6 +50,7 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
     }
 
     @Test
+    @Description("Test check behavior of application when user type invalid email and invalid password")
     public void loginWithInValidEmailInvalidPasswd(){
         LoginPage loginPage = new LoginPage();
         String WrongCredentialsMessage= loginPage
@@ -51,10 +58,11 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
                 .typeIntoPasswordField("wrong")
                 .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
-        assertEquals("Invalid password" , WrongCredentialsMessage);
+        assertEquals("Nieprawidłowe hasło" , WrongCredentialsMessage);
     }
 
     @Test
+    @Description("Test check behavior of application when user type correct email and invalid password")
     public void loginWithValidEmailAndInvalidPasswd(){
         LoginPage loginPage = new LoginPage();
         loginPage
@@ -67,6 +75,7 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
     }
 
     @Test
+    @Description("Test check behavior of application when user type correct USER NAME and correct password")
     public void loginWithCorrectUserNameAndPassword(){
         LoginPage loginPage = new LoginPage();
         loginPage
@@ -79,6 +88,7 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
     }
 
     @Test
+    @Description("Test check behavior of application when user click forgot password field")
     public void checkForgotYourPassword(){
         LoginPage loginPage = new LoginPage();
         loginPage
@@ -88,6 +98,7 @@ public class LoginToTrelloWithWrongCredentialsTest extends TestBase  {
     }
 
     @Test
+    @Description("Test check behavior of application when user want to log in with google account")
     public void checkSignInWithGoogle(){
         LoginPage loginPage = new LoginPage();
         loginPage

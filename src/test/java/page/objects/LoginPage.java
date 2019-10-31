@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -35,11 +36,9 @@ public class LoginPage extends TestBase {
     @FindBy(css=".google-button")
     private WebElement signInWithGoogle;
 
-    public LoginPage(){
-        PageFactory.initElements(DriverManager.getWebDriver(),this);
-    }
-
+    @Step("Type into user field invalid user name")
     public LoginPage typeIntoInvalidUserNameField(){
+        logger.info("Wait for element: "+ usernameField);
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
         usernameField.sendKeys("InvalidUser1");
@@ -47,7 +46,9 @@ public class LoginPage extends TestBase {
         return this;
     }
 
+    @Step("Type into user field valid user name")
     public LoginPage typeIntoValidUserNameField(String user){
+        logger.info("Wait for element: "+ usernameField);
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
         usernameField.sendKeys(user);
@@ -56,12 +57,15 @@ public class LoginPage extends TestBase {
         return this;
     }
 
+    @Step("Clear user name field")
     public LoginPage clearUserNameField(){
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
+        logger.info("Clear username field");
         return this;
     }
 
+    @Step("Type into password field : {password}")
     public LoginPage typeIntoPasswordField(String password){
         passwordField.clear();
         passwordField.sendKeys(password);
@@ -69,11 +73,14 @@ public class LoginPage extends TestBase {
         return this;
     }
 
+    @Step("Clear password field")
     public LoginPage clearPasswordField(){
         passwordField.clear();
+        logger.info("Clear password field");
         return this;
     }
 
+    @Step("Click on login button")
     public LoginPage clickOnLoginButtonWithWrongCredentials(){
         logger.info("Wait for " + loginButton);
         WaitForElement.waitUntilElementIsClickable(loginButton);
@@ -82,11 +89,14 @@ public class LoginPage extends TestBase {
         return this;
     }
 
+    @Step("Click on login button")
     public AtlassianPage clickOnLoginButtonWithValidCredentials(){
         loginButton.click();
+        logger.info("Clicked on login button with valid credentials");
         return new AtlassianPage();
     }
 
+    @Step("Getting warning message with information about what is wrong")
     public String getWarningMessage(){
         logger.info("Wait for Element" + wrongCredentialsMessange);
         WaitForElement.waitUntilElementIsVisible(wrongCredentialsMessange);
@@ -95,14 +105,18 @@ public class LoginPage extends TestBase {
         return warningText;
     }
 
+    @Step("Click on forgot password field")
     public ForgotPassword clickForgotPassword(){
         WaitForElement.waitUntilElementIsVisible(forgotPasswordMessage);
         forgotPasswordMessage.click();
+        logger.info("Clicked on forgot password field");
         return new ForgotPassword();
     }
 
+    @Step("Click on sign in with google")
     public GooglePage clickSignUpWithGoogle(){
         signInWithGoogle.click();
+        logger.info("Clicked on sign with google field");
         return new GooglePage();
     }
 }

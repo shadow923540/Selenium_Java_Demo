@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -17,10 +18,7 @@ public class TrelloDashBoard extends TestBase {
     @FindBy(xpath = "//span[@name='add']")
     private WebElement addDashBoardIcon;
 
-    public TrelloDashBoard(){
-        PageFactory.initElements(DriverManager.getWebDriver(), this);
-    }
-
+    @Step("Checking if you are succesfuly log in ")
     public void checkIfAddDashboardIsVisible(){
         logger.info("Wait for TrelloDashboard");
         WaitForElement.waitUntilElementIsVisible(addDashBoardIcon);

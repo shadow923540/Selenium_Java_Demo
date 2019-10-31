@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -18,10 +19,7 @@ public class GooglePage extends TestBase {
     private WebElement googleWelcomeMessage;
 
 
-    public GooglePage(){
-        PageFactory.initElements(DriverManager.getWebDriver(), this);
-    }
-
+    @Step("Checking if you are navigated to google login page ")
     public GooglePage checkWelcomeMessage(){
         WaitForElement.waitUntilElementIsVisible(googleWelcomeMessage);
         String welcomeMessage = googleWelcomeMessage.getText();
