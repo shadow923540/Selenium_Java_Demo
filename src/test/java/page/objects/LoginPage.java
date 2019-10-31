@@ -36,12 +36,20 @@ public class LoginPage extends TestBase {
         PageFactory.initElements(DriverManager.getWebDriver(),this);
     }
 
-    public LoginPage typeIntoUserNameField(String username){
+    public LoginPage typeIntoInvalidUserNameField(){
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
-        usernameField.sendKeys(username);
-        logger.info("Send username" + username);
-        WaitForElement.waitUntilElementIsVisible(forgotPasswordMessage);
+        usernameField.sendKeys("InvalidUser1");
+        logger.info("Send username : InvalidUser1");
+        return this;
+    }
+
+    public LoginPage typeIntoValidUserNameField(String user){
+        WaitForElement.waitUntilElementIsVisible(usernameField);
+        usernameField.clear();
+        usernameField.sendKeys(user);
+        logger.info("Send username : user");
+        WaitForElement.waitUntilElementIsInvisible(forgotPasswordMessage);
         return this;
     }
 
@@ -69,6 +77,11 @@ public class LoginPage extends TestBase {
         loginButton.click();
         logger.info("Clicked on login button" + loginButton);
         return this;
+    }
+
+    public AtlassianPage clickOnLoginButtonWithValidCredentials(){
+        loginButton.click();
+        return new AtlassianPage();
     }
 
     public String getWarningMessage(){
