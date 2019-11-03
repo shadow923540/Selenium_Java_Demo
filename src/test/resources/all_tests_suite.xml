@@ -8,5 +8,10 @@
             <class name="tests.LoginToTrelloTest"/>
         </classes>
     </test>
+    <test name="SignUp Tests">
+        <classes>
+            <class name="tests.SignUpToTrelloTest"/>
+        </classes>
+    </test>
 
 </suite>
