@@ -14,9 +14,10 @@ public class TrelloDashBoard extends BasePage {
     private WebElement addDashBoardIcon;
 
     @Step("Checking if you are succesfuly log in ")
-    public void checkIfAddDashboardIsVisible(){
+    public boolean checkIfAddDashboardIsVisible(){
         WaitForElement.waitUntilElementIsVisible(addDashBoardIcon);
-        assertTrue(addDashBoardIcon.isDisplayed());
+        boolean checkIfAddDashboardIsVisible = addDashBoardIcon.isDisplayed();
+        return checkIfAddDashboardIsVisible;
     }
 
 }
