@@ -107,7 +107,7 @@ public class LoginToTrelloTest extends TestBase  {
     public void checkSignInWithGoogle(){
         LoginPage loginPage = new LoginPage();
         String welcomeGoogleMessage = loginPage
-                .clickSignUpWithGoogle()
+                .clickSignInWithGoogle()
                 .checkWelcomeMessage();
         assertEquals("Zaloguj się przez Google", welcomeGoogleMessage);
     }
