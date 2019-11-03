@@ -12,10 +12,9 @@ public class GooglePage extends BasePage {
     private WebElement googleWelcomeMessage;
 
     @Step("Checking if you are navigated to google login page ")
-    public GooglePage checkWelcomeMessage(){
+    public String checkWelcomeMessage(){
         WaitForElement.waitUntilElementIsVisible(googleWelcomeMessage);
         String welcomeMessage = googleWelcomeMessage.getText();
-        assertEquals("Zaloguj się przez Google", welcomeMessage);
-        return new GooglePage();
+        return welcomeMessage;
     }
 }
