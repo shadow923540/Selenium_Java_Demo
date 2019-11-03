@@ -12,8 +12,9 @@ import page.objects.LoginPage;
 import static navigation.ApplicationURLs.APPLICATION_URL;
 import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
-public class LoginToTrello extends TestBase  {
+public class LoginToTrelloTest extends TestBase  {
 
     @BeforeMethod
     public void beforeTest(){
@@ -39,7 +40,7 @@ public class LoginToTrello extends TestBase  {
     public void loginWithCorrectEmailAndPassword(){
         DriverUtils.navigateToPage(APPLICATION_URL);
         LandingPage landingPage = new LandingPage();
-        landingPage
+        boolean checkIfLogIn = landingPage
                 .clickOnLoginButton()
                 .typeIntoValidUserNameField("pz65@o2.pl")
                 .clickOnLoginButtonWithValidCredentials()
@@ -47,6 +48,7 @@ public class LoginToTrello extends TestBase  {
                 .typePassword("netguru123")
                 .clickFinalLoginSubmit()
                 .checkIfAddDashboardIsVisible();
+        assertTrue(checkIfLogIn);
     }
 
     @Test
@@ -65,44 +67,48 @@ public class LoginToTrello extends TestBase  {
     @Description("Test check behavior of application when user type correct email and invalid password")
     public void loginWithValidEmailAndInvalidPasswd(){
         LoginPage loginPage = new LoginPage();
-        loginPage
+        boolean checkIfLoginFailed = loginPage
                 .typeIntoValidUserNameField("pz65@o2.pl")
                 .clickOnLoginButtonWithValidCredentials()
                 .clickLoginSubmit()
                 .typePassword("wrongpassword")
                 .clickLoginSubmit()
                 .checkIfWarningMessageIsVisible();
+        assertTrue(checkIfLoginFailed);
     }
 
     @Test
     @Description("Test check behavior of application when user type correct USER NAME and correct password")
     public void loginWithCorrectUserNameAndPassword(){
         LoginPage loginPage = new LoginPage();
-        loginPage
+        boolean checkIfLogIn = loginPage
                 .typeIntoValidUserNameField("netguru65")
                 .clickOnLoginButtonWithValidCredentials()
                 .clickLoginSubmit()
                 .typePassword("netguru123")
                 .clickFinalLoginSubmit()
                 .checkIfAddDashboardIsVisible();
+        assertTrue(checkIfLogIn);
     }
 
     @Test
     @Description("Test check behavior of application when user click forgot password field")
     public void checkForgotYourPassword(){
         LoginPage loginPage = new LoginPage();
-        loginPage
+        boolean checkVisibilityOfForgotPassword =loginPage
                 .typeIntoInvalidUserNameField()
                 .clickForgotPassword()
                 .checkVisibilityOfForgotPasswdMessage();
+        assertTrue(checkVisibilityOfForgotPassword);
     }
 
     @Test
     @Description("Test check behavior of application when user want to log in with google account")
     public void checkSignInWithGoogle(){
         LoginPage loginPage = new LoginPage();
-        loginPage
+        String welcomeGoogleMessage = loginPage
                 .clickSignUpWithGoogle()
                 .checkWelcomeMessage();
+        assertEquals("Zaloguj się przez Google", welcomeGoogleMessage);
     }
 }
