@@ -3,9 +3,9 @@
 <suite name="Trello login tests">
 
 
-    <test name="Positive Login Tests">
+    <test name="Login Tests">
         <classes>
-            <class name="tests.LoginToTrello"/>
+            <class name="tests.LoginToTrelloTest"/>
         </classes>
     </test>
 
