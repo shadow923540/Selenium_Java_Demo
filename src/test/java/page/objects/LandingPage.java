@@ -11,6 +11,9 @@ public class LandingPage extends BasePage {
     @FindBy(xpath = "//a[@href='/login']")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//a[@href='/signup']")
+    private WebElement signUpButton;
+
     @Step("Click Login Button on main page")
     public LoginPage clickOnLoginButton(){
         WaitForElement.waitUntilElementIsClickable(loginButton);
