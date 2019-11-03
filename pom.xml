@@ -92,8 +92,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                 </configuration>
-                <!--Dodanie dodatkowych zależności do maven-surefire-plugin w postaci biblioteki aspectjweaver-->
-                <!--Sekcja ta określa zależności dla danego pluginu-->
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
