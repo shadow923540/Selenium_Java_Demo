@@ -94,7 +94,7 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Click on sign in with google")
-    public GooglePage clickSignUpWithGoogle(){
+    public GooglePage clickSignInWithGoogle(){
         signInWithGoogle.click();
         return new GooglePage();
     }
