@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import waits.WaitForElement;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 public class AtlassianPage extends BasePage {
 
     @FindBy(id= "login-submit")
@@ -40,9 +38,9 @@ public class AtlassianPage extends BasePage {
     }
 
     @Step("Checking if warning message is visible")
-    public AtlassianPage checkIfWarningMessageIsVisible(){
+    public boolean checkIfWarningMessageIsVisible(){
         WaitForElement.waitUntilElementIsVisible(warningMessage);
-        assertTrue(warningMessage.isDisplayed());
-        return this;
+        boolean checkWarningMessage = warningMessage.isDisplayed();
+        return checkWarningMessage;
     }
 }
