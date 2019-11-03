@@ -20,4 +20,11 @@ public class LandingPage extends BasePage {
         loginButton.click();
         return new LoginPage();
     }
+
+    @Step("Click Sign up on main page")
+    public SignUpPage clickOnSignUp(){
+        WaitForElement.waitUntilElementIsClickable(signUpButton);
+        signUpButton.click();
+        return new SignUpPage();
+    }
 }
