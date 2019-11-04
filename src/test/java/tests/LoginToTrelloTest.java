@@ -31,7 +31,7 @@ public class LoginToTrelloTest extends TestBase  {
                 .clearPasswordField()
                 .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
-        assertEquals("Brakujący e-mail" , WrongCredentialsMessage);
+        assertEquals("Missing email" , WrongCredentialsMessage);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class LoginToTrelloTest extends TestBase  {
                 .typeIntoPasswordField("wrong")
                 .clickOnLoginButtonWithWrongCredentials()
                 .getWarningMessage();
-        assertEquals("Nieprawidłowe hasło" , WrongCredentialsMessage);
+        assertEquals("Invalid password" , WrongCredentialsMessage);
     }
 
     @Test

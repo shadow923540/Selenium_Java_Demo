@@ -52,7 +52,7 @@ public class SignUpToTrelloTest extends TestBase {
                 .typeIntoPasswordField("hehhehhee")
                 .clickSignUpButton()
                 .getinvalidLoginPrompt();
-        assertEquals("E-mail jest już w użyciu przez inne konto. Możesz zalogować się lub odzyskać hasło, by je zresetować.", checkInvalidLoginPrompt);
+        assertEquals("Email already in use by another account. You can use log in or use the forgot password page to reset your password.", checkInvalidLoginPrompt);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class SignUpToTrelloTest extends TestBase {
                 .typeIntoPasswordField("hehe")
                 .clickSignUpButton()
                 .getinvalidLoginPrompt();
-        assertEquals("Hasło musi posiadać co najmniej 8 znaków.", checkInvalidLoginPrompt);
+        assertEquals("Password must be at least 8 characters.", checkInvalidLoginPrompt);
     }
 
     @Test
@@ -98,13 +98,13 @@ public class SignUpToTrelloTest extends TestBase {
     public void checkSignUpWithCorrectData(){
         SignUpPage signUpPage = new SignUpPage();
         String ifUserSignUp = signUpPage
-                .typeIntoEmailField("pz921@wp.pl")
+                .typeIntoEmailField("pz65@o2.pl")
                 .clickSignUpButton()
-                .typeIntoEmailField("pz564382432@wp.pl")
                 .typeIntoNameField("Guru")
+                .typeIntoEmailField("pz543808732@wp.pl")
                 .typeIntoPasswordField("qwertyqwert")
                 .clickSignUpButton()
                 .getWelcomeMessage();
-        assertEquals("Hasło musi posiadać co najmniej 8 znaków.", ifUserSignUp);
+        assertEquals("Welcome to Trello!", ifUserSignUp);
     }
 }

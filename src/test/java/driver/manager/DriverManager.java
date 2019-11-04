@@ -13,8 +13,8 @@ public class DriverManager {
 
     public static WebDriver  getWebDriver(){
         if (driver == null){
-            System.setProperty("webdriver.chrome.driver", "/home/pawel/Drivers/chromedriver");
-//            System.setProperty("webdriver.chrome.driver", "C:/DRIVERS/chromedriver.exe");
+//            System.setProperty("webdriver.chrome.driver", "/home/pawel/Drivers/chromedriver");
+            System.setProperty("webdriver.chrome.driver", "C:/DRIVERS/chromedriver.exe");
             driver = new ChromeDriver();
             driver = WebDriverEventListenerRegistrar.registerWebDriverEventListener(driver);
         }
