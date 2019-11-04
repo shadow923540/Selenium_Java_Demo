@@ -44,6 +44,7 @@ public class SignUpPage extends BasePage {
     @Step("Type  email into emailField")
     public SignUpPage typeIntoEmailField(String email){
         WaitForElement.waitUntilElementIsVisible(emailField);
+        emailField.clear();
         emailField.sendKeys(email);
         return new SignUpPage();
     }
