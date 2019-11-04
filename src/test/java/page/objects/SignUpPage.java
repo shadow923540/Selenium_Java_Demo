@@ -25,6 +25,9 @@ public class SignUpPage extends BasePage {
     @FindBy(css="#password")
     private WebElement passwordField;
 
+    @FindBy(xpath="//div[@class='board-name']/h2/span")
+    private WebElement welcomeMessage;
+
     @Step("Click on sign up with google")
     public GooglePage clickSignUpWithGoogle(){
         signUpWithGoogle.click();
@@ -66,12 +69,21 @@ public class SignUpPage extends BasePage {
         return new SignUpPage();
     }
 
-    @Step("Get invalidLoginPrompt message")
+    @Step("Get invalid login prompt after signUp")
     public String getinvalidLoginPrompt(){
         WaitForElement.waitUntilElementIsVisible(invalidLoginPrompt);
         String prompt = invalidLoginPrompt.getText();
         return prompt;
     }
+
+    @Step("Get welcome message after signUp")
+    public String getWelcomeMessage(){
+        WaitForElement.waitUntilElementIsVisible(welcomeMessage);
+        String prompt = welcomeMessage.getText();
+        return prompt;
+    }
+
+
 
 
 
