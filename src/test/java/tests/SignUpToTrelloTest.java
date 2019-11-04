@@ -92,4 +92,19 @@ public class SignUpToTrelloTest extends TestBase {
                 .signUpIsClickable();
         assertFalse(isSignUpClickable);
     }
+
+    @Test
+    @Description("Test check behavior of application when user try signUp with correct data")
+    public void checkSignUpWithCorrectData(){
+        SignUpPage signUpPage = new SignUpPage();
+        String ifUserSignUp = signUpPage
+                .typeIntoEmailField("pz921@wp.pl")
+                .clickSignUpButton()
+                .typeIntoEmailField("pz564382432@wp.pl")
+                .typeIntoNameField("Guru")
+                .typeIntoPasswordField("qwertyqwert")
+                .clickSignUpButton()
+                .getWelcomeMessage();
+        assertEquals("Hasło musi posiadać co najmniej 8 znaków.", ifUserSignUp);
+    }
 }
